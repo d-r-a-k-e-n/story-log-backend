@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  password String
+  email    String  @unique
+  name     String
+  books    Entry[]
+  likes    Like[]
+
+  @@map("users")
+}
+
+model Entry {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  genreId     Int       @map("genre_id")
+  genre       Genre     @relation(fields: [genreId], references: [id])
+  author      String?
+  image       String?
+  userId      Int       @map("user_id")
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  typeId      Int       @map("type_id")
+  type        MediaType @relation(fields: [typeId], references: [id])
+  rating      Int?
+  statusId    Int?      @map("status_id")
+  status      Status?   @relation(fields: [statusId], references: [id])
+  likes       Like[]
+
+  @@map("entries")
+}
+
+model Genre {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  entries Entry[]
+
+  @@map("genres")
+}
+
+model MediaType {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  entries Entry[]
+
+  @@map("media_types")
+}
+
+model Status {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  entries Entry[]
+
+  @@map("statuses")
+}
+
+model Like {
+  id      Int   @id @default(autoincrement())
+  userId  Int   @map("user_id")
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entryId Int   @map("entry_id")
+  entry   Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, entryId])
+  @@map("likes")
+}
