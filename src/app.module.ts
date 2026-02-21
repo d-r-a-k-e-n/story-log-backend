@@ -5,6 +5,7 @@ import { PrismaModule } from './modules/prisma/prisma.module';
 import { UserModule } from 'src/modules/user/user.mudule';
 import { EntryModule } from 'src/modules/entry/entry.module';
 import { TmdbModule } from 'src/modules/tmdb/tmdb.mudule';
+import { AiModule } from 'src/modules/ai/ai.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TmdbModule } from 'src/modules/tmdb/tmdb.mudule';
     UserModule,
     EntryModule,
     TmdbModule,
+    AiModule,
   ],
 })
 export class AppModule {}
