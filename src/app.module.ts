@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { PrismaModule } from './modules/prisma/prisma.module';
-import { UserModule } from 'src/modules/user/user.mudule';
+import { AuthModule } from 'src/modules/auth/auth.mudule';
 import { EntryModule } from 'src/modules/entry/entry.module';
 import { TmdbModule } from 'src/modules/tmdb/tmdb.mudule';
+import { UserModule } from 'src/modules/user/user.module';
 import { AiModule } from 'src/modules/ai/ai.module';
 
 @Module({
@@ -15,9 +16,10 @@ import { AiModule } from 'src/modules/ai/ai.module';
       autoSchemaFile: true,
       playground: true,
     }),
-    UserModule,
+    AuthModule,
     EntryModule,
     TmdbModule,
+    UserModule,
     AiModule,
   ],
 })

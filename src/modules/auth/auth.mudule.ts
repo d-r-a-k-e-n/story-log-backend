@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserResolver } from 'src/modules/user/user.resolver';
-import { UserService } from 'src/modules/user/user.service';
+import { AuthResolver } from 'src/modules/auth/auth.resolver';
+import { AuthService } from 'src/modules/auth/auth.service';
 import { JwtModule } from '@nestjs/jwt';
+import { UserService } from 'src/modules/user/user.service';
 
 @Module({
   imports: [
@@ -11,9 +12,9 @@ import { JwtModule } from '@nestjs/jwt';
         expiresIn: +process.env.JWT_ACCESS_TOKEN_LIFETIME!,
       },
     }),
-    UserModule,
+    AuthModule,
   ],
   controllers: [],
-  providers: [UserResolver, UserService],
+  providers: [AuthResolver, AuthService, UserService],
 })
-export class UserModule {}
+export class AuthModule {}
