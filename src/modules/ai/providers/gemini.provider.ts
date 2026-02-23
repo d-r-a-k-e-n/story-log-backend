@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IAiProvider } from 'src/modules/ai/types/ai-provider.interface';
-import { GoogleGenAI, ThinkingLevel } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,

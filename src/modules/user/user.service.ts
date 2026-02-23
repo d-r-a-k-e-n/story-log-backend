@@ -5,10 +5,6 @@ import { Injectable } from '@nestjs/common';
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getUsers() {
-    return await this.prisma.user.findMany();
-  }
-
   async createUser({
     email,
     password,
@@ -25,5 +21,13 @@ export class UserService {
         name,
       },
     });
+  }
+
+  async getUsers() {
+    return await this.prisma.user.findMany();
+  }
+
+  async getUserByEmail(email: string) {
+    return await this.prisma.user.findUnique({ where: { email } });
   }
 }

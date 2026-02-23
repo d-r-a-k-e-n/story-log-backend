@@ -4,7 +4,6 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/modules/prisma/prisma.service';
 import bcrypt from 'bcryptjs';
 import { RegisterDto } from 'src/modules/auth/dto/register.dto';
 import { LoginDto } from 'src/modules/auth/dto/login.dto';
@@ -14,7 +13,6 @@ import { UserService } from 'src/modules/user/user.service';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
   ) {}
@@ -42,7 +40,7 @@ export class AuthService {
   }
 
   async login({ email, password }: LoginDto) {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+    const user = await this.userService.getUserByEmail(email);
 
     if (!user) throw new BadRequestException('Email or password is incorrect');
 
