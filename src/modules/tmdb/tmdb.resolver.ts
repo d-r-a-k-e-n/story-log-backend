@@ -1,16 +1,17 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { TmdbService } from 'src/modules/tmdb/tmdb.service';
-import { GetInfoTmdb } from 'src/modules/tmdb/models/get-info-tmdb.model';
-import { GetInfoTmdbInput } from 'src/modules/tmdb/models/get-info-tmdb.input';
+import { GetInfoFromTmdb } from 'src/modules/tmdb/types/get-info-from-tmdb.model';
+import { GetInfoFromTmdbInput } from 'src/modules/tmdb/types/get-info-from-tmdb.input';
 
 @Resolver('Tmdb')
 export class TmdbResolver {
   constructor(private readonly tmdbService: TmdbService) {}
 
-  @Query(() => [GetInfoTmdb])
-  async getInfo(
-    @Args('input', { type: () => GetInfoTmdbInput }) input: GetInfoTmdbInput,
+  @Query(() => [GetInfoFromTmdb])
+  async getInfoFromTmdb(
+    @Args('input', { type: () => GetInfoFromTmdbInput })
+    input: GetInfoFromTmdbInput,
   ) {
-    return await this.tmdbService.getInfo(input);
+    return await this.tmdbService.getInfoFromTmdb(input);
   }
 }

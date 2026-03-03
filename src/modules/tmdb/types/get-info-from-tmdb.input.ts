@@ -1,7 +1,7 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 
 @InputType()
-export class GetInfoTmdbInput {
+export class GetInfoFromTmdbInput {
   @Field(() => String)
   name: string;
 

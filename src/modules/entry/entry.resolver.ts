@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { EntryService } from 'src/modules/entry/entry.service';
-import { Entry } from 'src/modules/entry/models/entry.model';
-import { CreateEntryInput } from 'src/modules/entry/models/create-entry.input';
+import { Entry } from 'src/modules/entry/types/entry.model';
+import { CreateEntryInput } from 'src/modules/entry/types/create-entry.input';
 
 @Resolver('Entry')
 export class EntryResolver {
