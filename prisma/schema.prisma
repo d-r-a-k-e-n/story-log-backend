@@ -41,7 +41,7 @@ model Entry {
 }
 
 model Genre {
-  id      Int     @id @default(autoincrement())
+  id      Int     @id
   name    String  @unique
   entries Entry[]
 
