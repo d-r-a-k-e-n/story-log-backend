@@ -20,8 +20,6 @@ export class EntryService {
     typeId,
     statusId,
   }: EntryDto) {
-    // const image = await
-
     return await this.prisma.entry.create({
       data: {
         title,
@@ -38,5 +36,17 @@ export class EntryService {
 
   async deleteEntry(id: number) {
     return await this.prisma.entry.delete({ where: { id } });
+  }
+
+  async getAllGenres() {
+    return this.prisma.genre.findMany();
+  }
+
+  async getAllTypes() {
+    return this.prisma.mediaType.findMany();
+  }
+
+  async getAllStatuses() {
+    return this.prisma.status.findMany();
   }
 }
