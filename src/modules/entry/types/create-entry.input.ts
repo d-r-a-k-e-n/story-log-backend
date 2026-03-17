@@ -8,9 +8,6 @@ export class CreateEntryInput {
   @Field(() => String)
   description: string;
 
-  @Field(() => String)
-  author: string;
-
   @Field(() => String, { nullable: true })
   image: string;
 

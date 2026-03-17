@@ -1,4 +1,4 @@
-import { IsString, MinLength, MaxLength, IsUrl, IsInt } from 'class-validator';
+import { IsString, MinLength, MaxLength, IsInt } from 'class-validator';
 
 export class EntryDto {
   @IsString()
@@ -8,9 +8,6 @@ export class EntryDto {
   @MinLength(10)
   @MaxLength(2000)
   description?: string;
-
-  @IsString()
-  author?: string;
 
   @IsInt()
   rating: number;

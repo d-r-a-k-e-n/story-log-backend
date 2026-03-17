@@ -13,7 +13,6 @@ export class EntryService {
   async createEntry({
     title,
     description,
-    author,
     rating,
     userId,
     genreId,
@@ -24,7 +23,6 @@ export class EntryService {
       data: {
         title,
         description,
-        author,
         rating,
         user: { connect: { id: userId } },
         genre: { connect: { id: genreId } },
