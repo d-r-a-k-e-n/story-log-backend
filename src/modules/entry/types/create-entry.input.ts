@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, Float, InputType, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateEntryInput {
@@ -9,16 +9,16 @@ export class CreateEntryInput {
   description: string;
 
   @Field(() => String, { nullable: true })
-  image: string;
+  image?: string;
 
-  @Field(() => Int)
-  rating: number;
+  @Field(() => Float, { nullable: true })
+  rating?: number;
 
-  @Field(() => Int)
-  userId: number;
+  @Field(() => Int, { nullable: true })
+  userId?: number;
 
-  @Field(() => Int)
-  genreId: number;
+  @Field(() => [Int])
+  genreIds: number[];
 
   @Field(() => Int)
   typeId: number;

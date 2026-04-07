@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql';
 import { EntryService } from 'src/modules/entry/entry.service';
 import { Entry } from 'src/modules/entry/types/entry.model';
 import { CreateEntryInput } from 'src/modules/entry/types/create-entry.input';
@@ -33,8 +33,12 @@ export class EntryResolver {
   @Mutation(() => Entry)
   async createEntry(
     @Args('input', { type: () => CreateEntryInput }) input: CreateEntryInput,
+    @Context() context: { req?: { headers?: { authorization?: string } } },
   ) {
-    return await this.entryService.createEntry(input);
+    return await this.entryService.createEntry(
+      input,
+      context?.req?.headers?.authorization,
+    );
   }
 
   @Mutation(() => Entry)

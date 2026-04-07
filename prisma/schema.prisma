@@ -22,9 +22,8 @@ model Entry {
   id          Int       @id @default(autoincrement())
   title       String
   description String?
-  genreId     Int       @map("genre_id")
-  genre       Genre     @relation(fields: [genreId], references: [id])
-  author      String?
+  genres      Genre[]
+  genreIds    Int[]     @default([]) @map("genre_ids")
   image       String?
   userId      Int       @map("user_id")
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -32,18 +31,19 @@ model Entry {
   updatedAt   DateTime  @updatedAt @map("updated_at")
   typeId      Int       @map("type_id")
   type        MediaType @relation(fields: [typeId], references: [id])
-  rating      Int?
-  statusId    Int?      @map("status_id")
-  status      Status?   @relation(fields: [statusId], references: [id])
+  rating      Float?
+  statusId    Int       @map("status_id")
+  status      Status    @relation(fields: [statusId], references: [id])
   likes       Like[]
 
   @@map("entries")
 }
 
 model Genre {
-  id      Int     @id
-  name    String  @unique
-  entries Entry[]
+  id      Int    @id
+  name    String @unique
+  entry   Entry? @relation(fields: [entryId], references: [id])
+  entryId Int?
 
   @@map("genres")
 }

@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class GetInfoFromTmdb {
@@ -11,9 +11,12 @@ export class GetInfoFromTmdb {
   @Field(() => String, { nullable: true })
   posterPath: string;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Float, { nullable: true })
   rating: number;
 
   @Field(() => [String], { nullable: true })
   genreIds: string[];
+
+  @Field(() => String, { nullable: true })
+  mediaType: string;
 }

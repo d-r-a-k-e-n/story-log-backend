@@ -15,6 +15,7 @@ import { AiModule } from 'src/modules/ai/ai.module';
       driver: ApolloDriver,
       autoSchemaFile: true,
       playground: true,
+      context: ({ req }) => ({ req }),
     }),
     AuthModule,
     EntryModule,

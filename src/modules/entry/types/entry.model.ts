@@ -1,4 +1,4 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ID, Int, ObjectType } from '@nestjs/graphql';
 import { User } from 'src/modules/auth/types/user.model';
 
 @ObjectType()
@@ -47,8 +47,8 @@ export class Entry {
   @Field(() => String, { nullable: true })
   description: string;
 
-  @Field(() => Genre)
-  genre: Genre;
+  @Field(() => [Int])
+  genreIds: number[];
 
   @Field(() => String, { nullable: true })
   image: string;
@@ -65,10 +65,10 @@ export class Entry {
   @Field(() => MediaType)
   type: MediaType;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   rating: number;
 
-  @Field(() => Status, { nullable: true })
+  @Field(() => Status)
   status: Status;
 
   @Field(() => [Like])

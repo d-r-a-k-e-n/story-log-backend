@@ -1,4 +1,12 @@
-import { IsString, MinLength, MaxLength, IsInt } from 'class-validator';
+import {
+  IsString,
+  MinLength,
+  MaxLength,
+  IsInt,
+  IsNumber,
+  IsArray,
+  ArrayNotEmpty,
+} from 'class-validator';
 
 export class EntryDto {
   @IsString()
@@ -9,14 +17,19 @@ export class EntryDto {
   @MaxLength(2000)
   description?: string;
 
-  @IsInt()
-  rating: number;
+  @IsString()
+  image?: string;
+
+  @IsNumber()
+  rating?: number;
 
   @IsInt()
-  userId: number;
+  userId?: number;
 
-  @IsInt()
-  genreId: number;
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsInt({ each: true })
+  genreIds: number[];
 
   @IsInt()
   typeId: number;

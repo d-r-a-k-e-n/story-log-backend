@@ -34,6 +34,7 @@ export class TmdbService {
           genreIds: genre_ids.map((id: number) =>
             getGenreNameById(id, media_type),
           ),
+          mediaType: media_type,
         }),
       );
   }
