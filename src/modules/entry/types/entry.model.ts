@@ -1,5 +1,5 @@
-import { Field, Float, ID, Int, ObjectType } from '@nestjs/graphql';
-import { User } from 'src/modules/auth/types/user.model';
+import { Field, Float, ID, ObjectType } from "@nestjs/graphql";
+import { User } from "src/modules/auth/types/user.model";
 
 @ObjectType()
 export class Genre {
@@ -47,8 +47,8 @@ export class Entry {
   @Field(() => String, { nullable: true })
   description: string;
 
-  @Field(() => [Int])
-  genreIds: number[];
+  @Field(() => [Genre])
+  genres: Genre[];
 
   @Field(() => String, { nullable: true })
   image: string;

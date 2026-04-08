@@ -1,12 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql';
-import { EntryService } from 'src/modules/entry/entry.service';
-import { Entry } from 'src/modules/entry/types/entry.model';
-import { CreateEntryInput } from 'src/modules/entry/types/create-entry.input';
-import { Genres } from 'src/modules/entry/types/genres.model';
-import { MediaTypes } from 'src/modules/entry/types/media-types.model';
-import { Statuses } from 'src/modules/entry/types/statuses.model';
+import { Args, Context, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { EntryService } from "src/modules/entry/entry.service";
+import { Entry } from "src/modules/entry/types/entry.model";
+import { CreateEntryInput } from "src/modules/entry/types/create-entry.input";
+import { Genres } from "src/modules/entry/types/genres.model";
+import { MediaTypes } from "src/modules/entry/types/media-types.model";
+import { Statuses } from "src/modules/entry/types/statuses.model";
 
-@Resolver('Entry')
+@Resolver("Entry")
 export class EntryResolver {
   constructor(private readonly entryService: EntryService) {}
 
@@ -32,17 +32,17 @@ export class EntryResolver {
 
   @Mutation(() => Entry)
   async createEntry(
-    @Args('input', { type: () => CreateEntryInput }) input: CreateEntryInput,
-    @Context() context: { req?: { headers?: { authorization?: string } } },
+    @Args("input", { type: () => CreateEntryInput }) input: CreateEntryInput,
+    @Context() context: { req?: { headers?: { authorization?: string } } }
   ) {
     return await this.entryService.createEntry(
       input,
-      context?.req?.headers?.authorization,
+      context?.req?.headers?.authorization
     );
   }
 
   @Mutation(() => Entry)
-  async deleteEntry(@Args('id', { type: () => Int }) id: number) {
+  async deleteEntry(@Args("id", { type: () => Int }) id: number) {
     return await this.entryService.deleteEntry(id);
   }
 }

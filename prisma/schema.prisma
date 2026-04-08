@@ -23,7 +23,6 @@ model Entry {
   title       String
   description String?
   genres      Genre[]
-  genreIds    Int[]     @default([]) @map("genre_ids")
   image       String?
   userId      Int       @map("user_id")
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -40,10 +39,9 @@ model Entry {
 }
 
 model Genre {
-  id      Int    @id
-  name    String @unique
-  entry   Entry? @relation(fields: [entryId], references: [id])
-  entryId Int?
+  id     Int     @id
+  name   String  @unique
+  entrys Entry[]
 
   @@map("genres")
 }
